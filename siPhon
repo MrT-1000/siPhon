@@ -127,6 +127,9 @@ def fsanitize(st):
 	st = re.sub('[^a-zA-Z0-9 -_.,]','',st)
 	st = re.sub('\s+$','',st)
 	st = re.sub('^\s+','',st)
+	# Additional Cleaning For Windows
+	if os.name == 'nt':
+		st = re.sub('/|?|*|<|>', ' ').replace('"', "'")
 	return st
 
 def scan():
